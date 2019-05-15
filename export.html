@@ -1,0 +1,13 @@
+<script src="jspdf.debug.js">
+<script src="html2canvas.js">
+<div id="element"> Hello World! </div>
+<script>
+  html2canvas(document.querySelector("#element"), { scale:5 }).then(canvas => {
+    var pdf    = new jsPDF('l', 'mm', 'a4');
+    var img    = canvas.toDataURL("image/jpeg",1.0);
+    var width  = pdf.internal.pageSize.getWidth();
+    var height = pdf.internal.pageSize.getHeight();
+    pdf.addImage(img,"jpeg", 0, 0, width, height);
+    pdf.save("Export.pdf");
+  });
+</script>
